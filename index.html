@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Prime | The Ultimate Hub</title>
+    <style>
+        /* 
+           --- GLOBAL CONFIGURATION --- 
+           Professional Dark Theme Framework
+        */
+        :root {
+            --primary: #ff0055;
+            --secondary: #00d4ff;
+            --dark-bg: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        /* --- LIVE ANIMATED BACKGROUND --- */
+        body {
+            background: linear-gradient(270deg, #050505, #1a001a, #000000);
+            background-size: 600% 600%;
+            animation: backgroundFlow 15s ease infinite;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        @keyframes backgroundFlow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 30px 10%; backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed; width: 100%; z-index: 1000;
+        }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; }
+        .logo span { color: var(--primary); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 5rem; font-weight: 900; margin-bottom: 20px; letter-spacing: -2px; }
+        .hero p { font-size: 1.2rem; color: #aaa; max-width: 600px; margin-bottom: 40px; }
+        
+        .btn-glow {
+            padding: 15px 40px; background: transparent; border: 2px solid var(--primary);
+            color: white; font-weight: 700; cursor: pointer; transition: 0.4s;
+            box-shadow: 0 0 10px var(--primary); border-radius: 5px;
+        }
+        .btn-glow:hover { background: var(--primary); box-shadow: 0 0 30px var(--primary); }
+
+        /* --- GRID SYSTEM (The "Addictive" Part) --- */
+        .container { padding: 100px 10%; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px; border-radius: 15px; transition: 0.5s;
+            cursor: pointer; position: relative; overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            background: rgba(255,255,255,0.06);
+            border-color: var(--primary);
+        }
+        .card h3 { margin-bottom: 15px; color: var(--primary); }
+        .card p { color: #888; font-size: 0.9rem; line-height: 1.6; }
+
+        /* --- GLOW EFFECT --- */
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(255,0,85,0.1), transparent 70%);
+            opacity: 0; transition: 0.5s;
+        }
+        .card:hover::before { opacity: 1; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">NEXUS<span>PRIME</span></div>
+        <div class="nav-links">
+            <a href="#">DISCOVER</a>
+            <a href="#">ARCHIVES</a>
+            <a href="#">PREMIUM</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>THE VOID AWAITS</h1>
+        <p>A digital ecosystem built for the bold. Experience the convergence of high-end aesthetics and seamless storytelling.</p>
+        <button class="btn-glow">ENTER THE NEXUS</button>
+    </section>
+
+    <div class="container">
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <h3>Ethereal Echoes</h3>
+                <p>Dive into a story where the boundary between reality and simulation dissolves. Experience high-octane narrative progression.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <h3>Shadow Protocol</h3>
+                <p>Unlock classified insights and master the art of the digital underworld with our premium, encrypted guides.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <h3>Neon Vanguard</h3>
+                <p>Join the elite tier of readers and get exclusive access to content that pushes the limits of imagination.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="card">
+                <h3>Ghost Signals</h3>
+                <p>Uncovering the lost archives of the cyber era, reconstructed for your viewing pleasure in high fidelity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts to make it feel alive -->
+    <script>
+        // Simple hover tilt effect logic
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2)/20}deg) rotateY(${(x - rect.width/2)/20}deg) translateY(-10px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+        });
+    </script>
+</body>
+</html>
